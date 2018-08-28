@@ -1,4 +1,4 @@
-package wptoolbox;
+package fastily.wptoolbox;
 
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;

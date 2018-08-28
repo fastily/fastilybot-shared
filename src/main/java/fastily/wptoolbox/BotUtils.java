@@ -1,4 +1,4 @@
-package wptoolbox;
+package fastily.wptoolbox;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;

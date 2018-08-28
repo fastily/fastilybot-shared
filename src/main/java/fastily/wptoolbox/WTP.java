@@ -1,4 +1,4 @@
-package wptoolbox;
+package fastily.wptoolbox;
 
 import java.util.ArrayList;
 import java.util.HashSet;

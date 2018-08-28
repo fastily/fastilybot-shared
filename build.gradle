@@ -4,16 +4,16 @@ plugins {
     id 'eclipse'
 }
 
-version="0.0.1"
+version="0.0.2"
 description="${project.name} build script"
-group="wptoolbox"
+group="fastily"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 
 dependencies {
-    implementation "fastily:jwiki:1.6.1"
+    api "fastily:jwiki:1.6.1"
     
     // Use JUnit test framework
     // testImplementation 'junit:junit:4.12'
@@ -68,7 +68,7 @@ publishing {
             artifact packageJavadoc
 
             pom {
-                name = 'wptoolbox'
+                name = 'wp-toolbox'
                 description = "Shared functionality for Fastily's Wikipedia tools and bots"
                 inceptionYear = '2018'
                 url = 'https://github.com/fastily/wp-toolbox'
