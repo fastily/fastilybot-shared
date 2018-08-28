@@ -1,0 +1,3 @@
+rootProject.name = 'wp-toolbox'
+
+enableFeaturePreview('STABLE_PUBLISHING')
