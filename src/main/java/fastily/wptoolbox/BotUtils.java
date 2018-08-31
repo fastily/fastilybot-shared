@@ -237,7 +237,7 @@ public class BotUtils
 	 * @param titles The titles to get duplicates for
 	 * @return A Map where each key is the original, and each value is the first duplicate found.
 	 */
-	public static HashMap<String, String> getFirstOnlySharedDuplicate(Wiki wiki, ArrayList<String> titles)
+	public static HashMap<String, String> getFirstOnlySharedDuplicate(Wiki wiki, Collection<String> titles)
 	{
 		HashMap<String, String> l = new HashMap<>();
 		MQuery.getSharedDuplicatesOf(wiki, titles).forEach((k, v) -> {
