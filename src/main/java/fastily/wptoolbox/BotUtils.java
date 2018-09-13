@@ -20,9 +20,7 @@ import fastily.jwiki.core.MQuery;
 import fastily.jwiki.core.NS;
 import fastily.jwiki.core.Wiki;
 import fastily.jwiki.util.FL;
-import fastily.jwiki.util.FSystem;
 import fastily.jwiki.util.Tuple;
-import fastily.jwiki.util.WGen;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -57,16 +55,6 @@ public class BotUtils
 	public static Wiki getUserWP(String user)
 	{
 		return WGen.get(user, "en.wikipedia.org");
-	}
-
-	/**
-	 * Gets a Wiki (from WikiGen) for FastilyBot at en.wikipedia.org.
-	 * 
-	 * @return A Wiki object, or null on error
-	 */
-	public static Wiki getFastilyBot()
-	{
-		return getUserWP("FastilyBot");
 	}
 
 	/**

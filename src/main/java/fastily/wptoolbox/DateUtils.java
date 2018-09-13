@@ -14,11 +14,9 @@ import java.time.temporal.TemporalAccessor;
 public class DateUtils
 {
 	/**
-	 * Formats dates as as year month day
-	 * 
-	 * @see #dateAsYMD(TemporalAccessor)
+	 * A date formatter for UTC times.
 	 */
-	public static final DateTimeFormatter YMD = DateTimeFormatter.ofPattern("yyyy MMMM d");
+	public static final DateTimeFormatter iso8601dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	
 	/**
 	 * Formats dates as as day month year
@@ -31,6 +29,13 @@ public class DateUtils
 	 * Matches a date of the form dd-mmmm-yyyy.
 	 */
 	public static final String DMYRegex = "\\d{1,2}? (January|February|March|April|May|June|July|August|September|October|November|December) \\d{4}?";
+
+	/**
+	 * Formats dates as as year month day
+	 * 
+	 * @see #dateAsYMD(TemporalAccessor)
+	 */
+	public static final DateTimeFormatter YMD = DateTimeFormatter.ofPattern("yyyy MMMM d");
 
 	/**
 	 * Constructors disallowed
