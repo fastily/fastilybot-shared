@@ -11,7 +11,7 @@ import java.time.temporal.TemporalAccessor;
  * @author Fastily
  *
  */
-public class DateUtils
+public class Dates
 {
 	/**
 	 * A date formatter for UTC times.
@@ -40,7 +40,7 @@ public class DateUtils
 	/**
 	 * Constructors disallowed
 	 */
-	private DateUtils()
+	private Dates()
 	{
 
 	}

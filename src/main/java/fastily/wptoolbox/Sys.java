@@ -8,7 +8,7 @@ import java.nio.file.FileSystems;
  * @author Fastily
  * 
  */
-public final class FSystem
+public final class Sys
 {
 	/**
 	 * The default line separator for text files by OS. For Windows it's '\r\n' and for Mac/Unix it's just '\n'.
@@ -23,7 +23,7 @@ public final class FSystem
 	/**
 	 * All static methods, no constructors allowed.
 	 */
-	private FSystem()
+	private Sys()
 	{
 
 	}

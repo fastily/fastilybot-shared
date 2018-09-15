@@ -22,7 +22,7 @@ public class WGen
 	/**
 	 * The default filenames to save credentials under.
 	 */
-	private static Path px = Paths.get(".px.txt"), homePX = Paths.get(System.getProperty("user.home") + FSystem.psep + px);
+	private static Path px = Paths.get(".px.txt"), homePX = Paths.get(System.getProperty("user.home") + Sys.psep + px);
 
 	/**
 	 * Cache Wiki objects to avoid multiple logins.
@@ -46,7 +46,7 @@ public class WGen
 	{
 		Console c = System.console();
 		if (c == null)
-			FSystem.errAndExit("You are not running in CLI mode.");
+			Sys.errAndExit("You are not running in CLI mode.");
 
 		c.printf("Welcome to WGen!%nThis utility encodes and stores usernames/passwords%n%n");
 
@@ -70,7 +70,7 @@ public class WGen
 		}
 
 		if (ul.isEmpty())
-			FSystem.errAndExit("You did not make any entries.  Doing nothing.");
+			Sys.errAndExit("You did not make any entries.  Doing nothing.");
 
 		StringBuilder sb = new StringBuilder();
 		ul.forEach((k, v) -> sb.append(String.format("%s\t%s%n", k, v)));

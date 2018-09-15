@@ -1,18 +1,11 @@
 package fastily.wptoolbox;
 
-import static java.nio.file.StandardOpenOption.CREATE;
-import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
-import static java.nio.file.StandardOpenOption.WRITE;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,9 +14,6 @@ import fastily.jwiki.core.NS;
 import fastily.jwiki.core.Wiki;
 import fastily.jwiki.util.FL;
 import fastily.jwiki.util.Tuple;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
 /**
  * Static functions specific to fastilybot and tools.
@@ -33,11 +23,6 @@ import okhttp3.Request;
  */
 public class BotUtils
 {
-	/**
-	 * Generic http client for miscellaneous use.
-	 */
-	public static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES).build();
-
 	/**
 	 * Constructors disallowed
 	 */
@@ -69,37 +54,6 @@ public class BotUtils
 	}
 
 	/**
-	 * Performs a GET request on the specified URL and returns the response body as a String. Returns null if something
-	 * went wrong.
-	 * 
-	 * @param url The URL to send a GET request to
-	 * @return The response body as a String
-	 */
-	public static String httpGET(String url)
-	{
-		return httpGET(HttpUrl.parse(url));
-	}
-
-	/**
-	 * Performs a GET request on the specified HttpUrl and returns the response body as a String. Returns null if
-	 * something went wrong.
-	 * 
-	 * @param url The HttpUrl to send a GET request to
-	 * @return The response body as a String
-	 */
-	public static String httpGET(HttpUrl url)
-	{
-		try
-		{
-			return httpClient.newCall(new Request.Builder().url(url).get().build()).execute().body().string();
-		}
-		catch (Throwable e)
-		{
-			return null;
-		}
-	}
-
-	/**
 	 * Fetch a simple, raw report from fastilybot's toollabs dumps.
 	 * 
 	 * @param wiki The Wiki object to use
@@ -109,7 +63,7 @@ public class BotUtils
 	 */
 	public static HashSet<String> fetchLabsReportSet(Wiki wiki, String report, String prefix)
 	{
-		String body = httpGET(String.format("https://tools.wmflabs.org/fastilybot/r/%s.txt", report));
+		String body = Requests.httpGET(String.format("https://tools.wmflabs.org/fastilybot/r/%s.txt", report));
 		return body != null ? FL.toSet(Arrays.stream(body.split("\n")).map(s -> prefix + s.replace('_', ' '))) : new HashSet<>();
 	}
 
@@ -208,7 +162,7 @@ public class BotUtils
 	 */
 	public static String listify(String header, Collection<String> titles, boolean doEscape)
 	{
-		String fmtStr = "* [[" + (doEscape ? ":" : "") + "%s]]" + FSystem.lsep;
+		String fmtStr = String.format("* [[%s%%s]]\n", doEscape ? ":" : "");
 
 		StringBuilder x = new StringBuilder(header);
 		for (String s : titles)
@@ -234,18 +188,5 @@ public class BotUtils
 		});
 
 		return l;
-	}
-
-	/**
-	 * Writes Collection of String to disk at {@code path}, delineated by newlines. If {@code path} exists, then it will
-	 * be overwritten.
-	 * 
-	 * @param path The location on disk to write to
-	 * @param l The Collection to use
-	 * @throws Throwable Throwable IO Error
-	 */
-	public static void writeStringsToFile(Path path, Collection<String> l) throws Throwable
-	{
-		Files.write(path, l, CREATE, WRITE, TRUNCATE_EXISTING);
 	}
 }
