@@ -2,7 +2,6 @@ package fastily.wptoolbox;
 
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,17 +15,17 @@ import fastily.jwiki.util.FL;
 import fastily.jwiki.util.Tuple;
 
 /**
- * Static functions specific to fastilybot and tools.
+ * Useful extensions to jwiki's Wiki
  * 
  * @author Fastily
  *
  */
-public class BotUtils
+public class WikiX
 {
 	/**
 	 * Constructors disallowed
 	 */
-	private BotUtils()
+	private WikiX()
 	{
 
 	}
@@ -51,33 +50,6 @@ public class BotUtils
 	public static Wiki getCommons(Wiki wiki)
 	{
 		return wiki.getWiki("commons.wikimedia.org");
-	}
-
-	/**
-	 * Fetch a simple, raw report from fastilybot's toollabs dumps.
-	 * 
-	 * @param wiki The Wiki object to use
-	 * @param report The name of the report, without the {@code .txt} extension.
-	 * @param prefix The prefix to add to each entry (usually a namespace prefix).
-	 * @return A String Array with each item in the report, or the empty Array if something went wrong.
-	 */
-	public static HashSet<String> fetchLabsReportSet(Wiki wiki, String report, String prefix)
-	{
-		String body = Requests.httpGET(String.format("https://tools.wmflabs.org/fastilybot/r/%s.txt", report));
-		return body != null ? FL.toSet(Arrays.stream(body.split("\n")).map(s -> prefix + s.replace('_', ' '))) : new HashSet<>();
-	}
-
-	/**
-	 * Fetch a simple report from fastilybot's toollabs dumps where each entry is prefixed with {@code File:} and where
-	 * underscores are replaced by spaces.
-	 * 
-	 * @param wiki The Wiki object to use
-	 * @param rNum The report number to fetch.
-	 * @return A HashSet with each item in the report, or the empty HashSet if something went wrong.
-	 */
-	public static HashSet<String> fetchLabsReportAsFiles(Wiki wiki, int rNum)
-	{
-		return fetchLabsReportSet(wiki, "report" + rNum, "File:");
 	}
 
 	/**
@@ -149,26 +121,6 @@ public class BotUtils
 	{
 		Matcher m = p.matcher(text);
 		return m.find() ? m.group() : "";
-	}
-
-	/**
-	 * Generates a Wiki-text ready, wiki-linked, unordered list from a list of titles.
-	 * 
-	 * @param header A header/lead string to apply at the beginning of the returned String.
-	 * @param titles The titles to use
-	 * @param doEscape Set as true to escape titles. i.e. adds a {@code :} before each link so that files and categories
-	 *           are properly escaped and appear as links.
-	 * @return A String with the titles as a linked, unordered list, in Wiki-text.
-	 */
-	public static String listify(String header, Collection<String> titles, boolean doEscape)
-	{
-		String fmtStr = String.format("* [[%s%%s]]\n", doEscape ? ":" : "");
-
-		StringBuilder x = new StringBuilder(header);
-		for (String s : titles)
-			x.append(String.format(fmtStr, s));
-
-		return x.toString();
 	}
 
 	/**
