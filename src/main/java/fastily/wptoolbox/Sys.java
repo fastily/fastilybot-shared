@@ -1,7 +1,5 @@
 package fastily.wptoolbox;
 
-import java.nio.file.FileSystems;
-
 /**
  * System properties and static error handling methods.
  * 
@@ -10,16 +8,6 @@ import java.nio.file.FileSystems;
  */
 public final class Sys
 {
-	/**
-	 * The default line separator for text files by OS. For Windows it's '\r\n' and for Mac/Unix it's just '\n'.
-	 */
-	public static final String lsep = System.getProperty("line.separator");
-
-	/**
-	 * The default separator for pathnames by OS. For Windows it is '\' for Mac/Unix it is '/'
-	 */
-	public static final String psep = FileSystems.getDefault().getSeparator();
-
 	/**
 	 * All static methods, no constructors allowed.
 	 */

@@ -1,6 +1,7 @@
 package fastily.wptoolbox;
 
 import java.io.Console;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,7 +23,8 @@ public class WGen
 	/**
 	 * The default filenames to save credentials under.
 	 */
-	private static Path px = Paths.get(".px.txt"), homePX = Paths.get(System.getProperty("user.home") + Sys.psep + px);
+	private static Path px = Paths.get(".px.txt"),
+			homePX = Paths.get(System.getProperty("user.home") + FileSystems.getDefault().getSeparator() + px);
 
 	/**
 	 * Cache Wiki objects to avoid multiple logins.
@@ -46,7 +48,10 @@ public class WGen
 	{
 		Console c = System.console();
 		if (c == null)
-			Sys.errAndExit("You are not running in CLI mode.");
+		{
+			System.err.println("[ERROR]: You are not running in CLI mode.");
+			return;
+		}
 
 		c.printf("Welcome to WGen!%nThis utility encodes and stores usernames/passwords%n%n");
 
@@ -70,7 +75,10 @@ public class WGen
 		}
 
 		if (ul.isEmpty())
-			Sys.errAndExit("You did not make any entries.  Doing nothing.");
+		{
+			System.err.println("[WARNING]: You did not make any entries.  Doing nothing.");
+			return;
+		}
 
 		StringBuilder sb = new StringBuilder();
 		ul.forEach((k, v) -> sb.append(String.format("%s\t%s%n", k, v)));
