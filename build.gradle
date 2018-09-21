@@ -14,9 +14,6 @@ targetCompatibility = 1.8
 
 dependencies {
     api "fastily:jwiki:1.6.1"
-    
-    // Use JUnit test framework
-    // testImplementation 'junit:junit:4.12'
 }
 
 repositories {
@@ -55,7 +52,7 @@ task packageJavadoc(type: Jar) {
 }
 
 wrapper {
-    gradleVersion = '4.10.1'
+    gradleVersion = '4.10.2'
 }
 
 
