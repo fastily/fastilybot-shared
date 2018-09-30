@@ -55,7 +55,6 @@ wrapper {
     gradleVersion = '4.10.2'
 }
 
-
 publishing {
     publications {
         mavenPublish(MavenPublication) {
@@ -79,4 +78,20 @@ publishing {
             }
         }
     }
+}
+
+task wgen(type: Jar) {
+  baseName = "WGen"
+
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+
+  manifest {
+    attributes 'Main-Class': 'fastily.wptoolbox.WGen'
+  }
+  
+  exclude "META-INF/*.SF", "**/LICENSE*", "**/NOTICE*", "**/maven/**"
+
+  with jar
 }
