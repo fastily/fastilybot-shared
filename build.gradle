@@ -13,7 +13,7 @@ targetCompatibility = 1.8
 
 
 dependencies {
-    api "fastily:jwiki:1.6.1"
+    api "fastily:jwiki:1.7.1"
 }
 
 repositories {
