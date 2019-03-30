@@ -23,6 +23,12 @@ import fastily.jwiki.util.Tuple;
 public class WikiX
 {
 	/**
+	 * First pass regex matching redirects in text. This extracts the redirect as a link, and there may be leading
+	 * spaces.
+	 */
+	private static Pattern firstPassRedirectRegex = Pattern.compile("(?i)(?<=\\#REDIRECT)\\s*\\[\\[.+?\\]\\]");
+
+	/**
 	 * Constructors disallowed
 	 */
 	private WikiX()
@@ -140,5 +146,17 @@ public class WikiX
 		});
 
 		return l;
+	}
+
+	/**
+	 * Extracts the target of a redirect from wikitext.
+	 * 
+	 * @param s The wikitext to look for a redirect target.
+	 * @return The target of the redirect, or null if no redirect incantation was found.
+	 */
+	public static String extractRedirectTarget(String s)
+	{
+		Matcher m = firstPassRedirectRegex.matcher(s);
+		return m.find() ? m.group().replaceAll("(^\\s*\\[\\[|\\]\\])", "").trim() : null;
 	}
 }
