@@ -2,13 +2,10 @@ dist: xenial
 sudo: false
 language: java
 
-jdk:
-  - openjdk8
-
 before_install:
   - git clone --depth 1 https://github.com/fastily/jwiki.git
   - pushd jwiki
-  - ./gradlew -x test build publishToMavenLocal
+  - ./gradlew -x test publishToMavenLocal
   - popd
 
 notifications:
