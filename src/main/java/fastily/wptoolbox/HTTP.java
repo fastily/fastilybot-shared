@@ -1,6 +1,6 @@
 package fastily.wptoolbox;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.HttpUrl;
@@ -13,7 +13,7 @@ public class HTTP
 	/**
 	 * Generic http client for miscellaneous use.
 	 */
-	private static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES).protocols(Arrays.asList(Protocol.HTTP_1_1)).build();
+	private static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES).protocols(List.of(Protocol.HTTP_1_1)).build();
 
 	/**
 	 * Constructors disallowed

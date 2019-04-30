@@ -157,6 +157,6 @@ public class WikiX
 	public static String extractRedirectTarget(String s)
 	{
 		Matcher m = firstPassRedirectRegex.matcher(s);
-		return m.find() ? m.group().replaceAll("(^\\s*\\[\\[|\\]\\])", "").trim() : null;
+		return m.find() ? m.group().replaceAll("(^\\s*\\[\\[|\\]\\])", "").strip() : null;
 	}
 }
