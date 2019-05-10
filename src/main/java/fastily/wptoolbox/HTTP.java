@@ -7,20 +7,22 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
 import okhttp3.Request;
+import okhttp3.Response;
 
 public class HTTP
 {
 	/**
 	 * Generic http client for miscellaneous use.
 	 */
-	private static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES).protocols(List.of(Protocol.HTTP_1_1)).build();
+	public static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES)
+			.protocols(List.of(Protocol.HTTP_1_1)).build();
 
 	/**
 	 * Constructors disallowed
 	 */
 	private HTTP()
 	{
-		
+
 	}
 
 	/**
@@ -46,11 +48,23 @@ public class HTTP
 	{
 		try
 		{
-			return HTTP.httpClient.newCall(new Request.Builder().url(url).get().build()).execute().body().string();
+			return getResponse(url).body().string();
 		}
 		catch (Throwable e)
 		{
 			return null;
 		}
+	}
+
+	/**
+	 * Performs a GET request on the specified HttpUrl and returns the Response.
+	 * 
+	 * @param url The HttpUrl to send a GET request to
+	 * @return The Response from the server.
+	 * @throws Throwable If something went wrong
+	 */
+	public static Response getResponse(HttpUrl url) throws Throwable
+	{
+		return httpClient.newCall(new Request.Builder().url(url).get().build()).execute();
 	}
 }
