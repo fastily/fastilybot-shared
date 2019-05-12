@@ -14,7 +14,7 @@ public class HTTP
 	/**
 	 * Generic http client for miscellaneous use.
 	 */
-	public static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES)
+	private static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES)
 			.protocols(List.of(Protocol.HTTP_1_1)).build();
 
 	/**
