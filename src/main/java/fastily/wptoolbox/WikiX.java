@@ -29,6 +29,13 @@ public class WikiX
 	private static Pattern firstPassRedirectRegex = Pattern.compile("(?i)(?<=\\#REDIRECT)\\s*\\[\\[.+?\\]\\]");
 
 	/**
+	 * Wiki pointing to the Wikimedia Commons
+	 * 
+	 * @see #getCommons()
+	 */
+	private static Wiki commons;
+	
+	/**
 	 * Constructors disallowed
 	 */
 	private WikiX()
@@ -58,6 +65,16 @@ public class WikiX
 		return wiki.getWiki("commons.wikimedia.org");
 	}
 
+	/**
+	 * Creates an anonymous Wiki pointing to the Wikimedia Commons. This method is cached.
+	 * 
+	 * @return An anonymous Wiki pointing to the Wikimedia Commons
+	 */
+	public static Wiki getCommons()
+	{
+		return commons == null ? (commons = new Wiki.Builder().withDomain("commons.wikimedia.org").build()) : commons;
+	}
+	
 	/**
 	 * Determine if a set of link(s) has existed on a page over a given time period.
 	 * 
