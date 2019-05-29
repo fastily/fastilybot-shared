@@ -144,7 +144,7 @@ public class WGen
 
 		try
 		{
-			Wiki wiki = new Wiki.Builder().withUsernameAndPassword(user, pxFor(user)).withDomain(domain).build();
+			Wiki wiki = new Wiki.Builder().withLogin(user, pxFor(user)).withDomain(domain).build();
 			cache.put(user, wiki);
 			return wiki;
 		}
