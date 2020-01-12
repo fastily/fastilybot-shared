@@ -30,8 +30,8 @@ javadoc {
         setAuthor true
 
         links "https://docs.oracle.com/en/java/javase/11/docs/api/"
-        links "https://square.github.io/okio/1.x/okio/"
-        links "https://square.github.io/okhttp/3.x/okhttp/"
+        //links "https://square.github.io/okio/1.x/okio/"
+        //links "https://square.github.io/okhttp/3.x/okhttp/"
         links "https://fastily.github.io/jwiki/docs/gson/"
         links "https://fastily.github.io/jwiki/docs/jwiki/"
         
