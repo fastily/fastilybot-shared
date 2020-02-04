@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 
-import fastily.jwiki.core.Wiki;
-import fastily.jwiki.util.FL;
+import org.fastily.jwiki.core.Wiki;
+import org.fastily.jwiki.util.FL;
 
 /**
  * A simple, pluggable key-store manager.
@@ -23,8 +23,7 @@ public class WGen
 	/**
 	 * The default filenames to save credentials under.
 	 */
-	private static Path px = Paths.get(".px.txt"),
-			homePX = Paths.get(System.getProperty("user.home") + FileSystems.getDefault().getSeparator() + px);
+	private static Path px = Paths.get(".px.txt"), homePX = Paths.get(System.getProperty("user.home") + FileSystems.getDefault().getSeparator() + px);
 
 	/**
 	 * Cache Wiki objects to avoid multiple logins.
@@ -116,8 +115,7 @@ public class WGen
 
 		try
 		{
-			for (String[] a : FL
-					.toAL(Arrays.stream(new String(Base64.getDecoder().decode(Files.readAllBytes(f))).split("\n")).map(s -> s.split("\t"))))
+			for (String[] a : FL.toAL(Arrays.stream(new String(Base64.getDecoder().decode(Files.readAllBytes(f))).split("\n")).map(s -> s.split("\t"))))
 				if (a[0].equals(user))
 					return a[1];
 		}
@@ -130,8 +128,7 @@ public class WGen
 	}
 
 	/**
-	 * Creates or returns a Wiki using locally stored credentials previously saved with the main method. This method is
-	 * cached.
+	 * Creates or returns a Wiki using locally stored credentials previously saved with the main method. This method is cached.
 	 * 
 	 * @param user The username to use
 	 * @param domain The domain (shorthand) to login at.

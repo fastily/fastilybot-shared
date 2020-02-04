@@ -8,11 +8,11 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fastily.jwiki.core.MQuery;
-import fastily.jwiki.core.NS;
-import fastily.jwiki.core.Wiki;
-import fastily.jwiki.util.FL;
-import fastily.jwiki.util.Tuple;
+import org.fastily.jwiki.core.MQuery;
+import org.fastily.jwiki.core.NS;
+import org.fastily.jwiki.core.Wiki;
+import org.fastily.jwiki.util.FL;
+import org.fastily.jwiki.util.Tuple;
 
 /**
  * Useful extensions to jwiki's Wiki
@@ -23,8 +23,7 @@ import fastily.jwiki.util.Tuple;
 public class WikiX
 {
 	/**
-	 * First pass regex matching redirects in text. This extracts the redirect as a link, and there may be leading
-	 * spaces.
+	 * First pass regex matching redirects in text. This extracts the redirect as a link, and there may be leading spaces.
 	 */
 	private static Pattern firstPassRedirectRegex = Pattern.compile("(?i)(?<=\\#REDIRECT)\\s*\\[\\[.+?\\]\\]");
 
@@ -34,7 +33,7 @@ public class WikiX
 	 * @see #getCommons()
 	 */
 	private static Wiki commons;
-	
+
 	/**
 	 * Constructors disallowed
 	 */
@@ -74,7 +73,7 @@ public class WikiX
 	{
 		return commons == null ? (commons = new Wiki.Builder().withDomain("commons.wikimedia.org").build()) : commons;
 	}
-	
+
 	/**
 	 * Determine if a set of link(s) has existed on a page over a given time period.
 	 * 
@@ -147,8 +146,7 @@ public class WikiX
 	}
 
 	/**
-	 * Gets the first shared (non-local) duplicate for each file with a duplicate. Filters out files which do not have
-	 * duplicates.
+	 * Gets the first shared (non-local) duplicate for each file with a duplicate. Filters out files which do not have duplicates.
 	 * 
 	 * @param wiki The Wiki object to use
 	 * @param titles The titles to get duplicates for

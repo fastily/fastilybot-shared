@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 
-import fastily.jwiki.core.NS;
-import fastily.jwiki.core.Wiki;
-import fastily.jwiki.util.FL;
+import org.fastily.jwiki.core.NS;
+import org.fastily.jwiki.core.Wiki;
+import org.fastily.jwiki.util.FL;
 
 /**
  * Lists commonly used templates and contains methods to get regexes and transclusions for them.
@@ -65,7 +65,7 @@ public final class WTP
 	 * Wraps {@code Template:Proposed deletion/dated}
 	 */
 	public static final WTP prod = new WTP("Template:Proposed deletion/dated");
-	
+
 	/**
 	 * The template title, including namespace
 	 */
@@ -128,7 +128,7 @@ public final class WTP
 	 * @param tplate The template (including namespace) to generate a regex for.
 	 * @return A regex matching the specified template, its redirects, and parameters.
 	 */
-	private static String makeTemplateRegex(Wiki wiki, String tplate) //TODO: refactor usage
+	private static String makeTemplateRegex(Wiki wiki, String tplate) // TODO: refactor usage
 	{
 		ArrayList<String> l = wiki.whatLinksHere(tplate, true);
 		l.add(tplate);

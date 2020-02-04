@@ -14,8 +14,7 @@ public class HTTP
 	/**
 	 * Generic http client for miscellaneous use.
 	 */
-	private static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES)
-			.protocols(List.of(Protocol.HTTP_1_1)).build();
+	private static OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(2, TimeUnit.MINUTES).protocols(List.of(Protocol.HTTP_1_1)).build();
 
 	/**
 	 * Constructors disallowed
@@ -26,8 +25,7 @@ public class HTTP
 	}
 
 	/**
-	 * Performs a GET request on the specified URL and returns the response body as a String. Returns null if something
-	 * went wrong.
+	 * Performs a GET request on the specified URL and returns the response body as a String. Returns null if something went wrong.
 	 * 
 	 * @param url The URL to send a GET request to
 	 * @return The response body as a String
@@ -38,8 +36,7 @@ public class HTTP
 	}
 
 	/**
-	 * Performs a GET request on the specified HttpUrl and returns the response body as a String. Returns null if
-	 * something went wrong.
+	 * Performs a GET request on the specified HttpUrl and returns the response body as a String. Returns null if something went wrong.
 	 * 
 	 * @param url The HttpUrl to send a GET request to
 	 * @return The response body as a String

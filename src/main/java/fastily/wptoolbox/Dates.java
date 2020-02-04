@@ -17,14 +17,14 @@ public class Dates
 	 * A date formatter for UTC times.
 	 */
 	public static final DateTimeFormatter iso8601dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	
+
 	/**
 	 * Formats dates as as day month year
 	 * 
 	 * @see #dateAsDMY(TemporalAccessor)
 	 */
 	public static final DateTimeFormatter DMY = DateTimeFormatter.ofPattern("d MMMM yyyy");
-	
+
 	/**
 	 * Matches a date of the form dd-mmmm-yyyy.
 	 */
