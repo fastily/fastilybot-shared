@@ -52,7 +52,7 @@ task packageJavadoc(type: Jar) {
 }
 
 wrapper {
-    gradleVersion = '6.1.1'
+    gradleVersion = '6.2'
 }
 
 publishing {
