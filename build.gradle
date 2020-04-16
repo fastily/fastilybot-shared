@@ -1,25 +1,32 @@
 plugins {
+    id 'eclipse'
     id 'java-library'
     id 'maven-publish'
-    id 'eclipse'
 }
 
-version="0.0.2"
 description="${project.name} build script"
-group="fastily"
-
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
-
-
-dependencies {
-    api "fastily:jwiki:1.7.1"
-}
+group="org.fastily"
+version="0.0.3"
 
 repositories {
     mavenLocal()
-    jcenter()
+    mavenCentral()
 }
+
+dependencies {
+    api "org.fastily:jwiki:1.8.1"
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+
+    withJavadocJar()
+    withSourcesJar()
+}
+
+
 
 javadoc {
     source = sourceSets.main.allJava
@@ -40,58 +47,60 @@ javadoc {
     }
 }
 
-
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
-    classifier = 'sources'
-}
-
-task packageJavadoc(type: Jar) {
-    from javadoc
-    classifier = 'javadoc'
-}
-
 wrapper {
     gradleVersion = '6.3'
 }
 
 publishing {
     publications {
-        mavenPublish(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
-
-            artifact sourceJar
-            artifact packageJavadoc
 
             pom {
                 name = 'wp-toolbox'
-                description = "Shared functionality for Fastily's Wikipedia tools and bots"
+                description = 'Shared functionality for Fastily\'s Wikipedia tools and bots'
                 inceptionYear = '2018'
                 url = 'https://github.com/fastily/wp-toolbox'
                 licenses {
                     license {
                         name = 'GNU General Public License, Version 3.0'
                         url = 'https://www.gnu.org/licenses/gpl-3.0.txt'
-                        distribution = 'repo'
                     }
+                }
+                developers {
+                    developer {
+                        id = 'fastily'
+                        name = 'Fastily'
+                        email = 'fastily@users.noreply.github.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/fastily/wp-toolbox.git'
+                    developerConnection = 'scm:git:ssh://github.com/fastily/wp-toolbox.git'
+                    url = 'https://github.com/fastily/wp-toolbox'
                 }
             }
         }
     }
 }
 
+
 task wgen(type: Jar) {
-  baseName = "WGen"
 
-  from {
-    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-  }
+    archiveClassifier = 'uber'
 
-  manifest {
-    attributes 'Main-Class': 'fastily.wptoolbox.WGen'
-  }
-  
-  exclude "META-INF/*.SF", "**/LICENSE*", "**/NOTICE*", "**/maven/**"
+    archiveBaseName = "WGen"
 
-  with jar
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+
+    manifest {
+        attributes 'Main-Class': 'org.fastily.wptoolbox.WGen'
+    }
+
+    exclude "META-INF/*.SF", "**/LICENSE*", "**/NOTICE*", "**/maven/**"
 }

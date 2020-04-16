@@ -1,4 +1,4 @@
-package fastily.wptoolbox;
+package org.fastily.wptoolbox;
 
 /**
  * System properties and static error handling methods.

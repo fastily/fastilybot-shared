@@ -1,4 +1,4 @@
-package fastily.wptoolbox;
+package org.fastily.wptoolbox;
 
 import java.util.concurrent.TimeUnit;
 
