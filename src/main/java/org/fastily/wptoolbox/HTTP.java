@@ -7,6 +7,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * Simple network utilities
+ * 
+ * @author Fastily
+ *
+ */
 public class HTTP
 {
 	/**
